@@ -49,6 +49,13 @@ export default defineComponent({
     getPageRegmarks() {
       const pageSize = this.pageSize == 'Letter' ? 'letter-regmarks.png' : 'a4-regmarks.png'
       return pageSize
+    },
+
+    changePageNumber(images, image, oldNumber, newNumber) {
+      images.splice(oldNumber, 1)
+      images.splice(newNumber, 0, image)
+
+      images.forEach((image, index) => {image.pageNumber = index})
     }
   },
 
@@ -63,10 +70,8 @@ export default defineComponent({
     const printLetter = ref(true)
     const printPrintshop = ref(true)
 
-    const router = useRouter()
-
     watch(imgUrls, (imgUrls, imgUrlsOld) => {
-      images.value = imgUrls.map((imgUrl) => { return {url:imgUrl, align:'start', regmarks:true, printA4:true, printLetter:true, printPrintshop:true} })
+      images.value = imgUrls.map((imgUrl, i) => { return {url:imgUrl, align:'start', regmarks:true, printA4:true, printLetter:true, printPrintshop:true, pageNumber: i} })
     })
 
     watch(previews, (previews, previewsOld) => {
@@ -83,8 +88,7 @@ export default defineComponent({
       fileName,
       printA4,
       printLetter,
-      printPrintshop,
-      router
+      printPrintshop
     }
   }
 })
@@ -168,6 +172,11 @@ export default defineComponent({
             <div class="page-options-row">
                 <input type="checkbox" :id="'printPrintshop'+i" v-model="file.printPrintshop" checked>
                 <label :for="'printPrintshop'+i">Printshop</label>
+            </div>
+              
+            <div class="page-options-row">
+                <input type="input" size="2" :id="'pageNumber'+i" v-on:input="changePageNumber(images, file, i, file.pageNumber)" v-model="file.pageNumber" checked>
+                <label :for="'pageNumber'+i">Page number</label>
             </div>
 
           </div>
@@ -289,6 +298,15 @@ export default defineComponent({
   margin:6px;
 }
 
+.page-options-row > label {
+  padding-left:4px;
+  padding-right:4px;
+}
+
+.page-options-row > input {
+  border: 1px solid black;
+}
+
 .checkboxlabel {
   color: white;
   padding: 0px 8px 0px 8px;
@@ -302,7 +320,3 @@ export default defineComponent({
 }
 
 </style>
-
-  function DefineComponent(arg0: { components: { PrinterIcon: import("vue").RenderFunction; FolderOpenIcon: import("vue").RenderFunction; FileSelector: any; Dropzone: any; DialogButton: any }; methods: { printTo(windowName: string, pageSize: string, fileName: string, imagesJSON: {}): void; print(fileName: string, images: {}[], printA4: boolean, printLetter: boolean, printPrintshop: boolean): void; getPageSize(): "page-letter"|"page-a4"; getPageRegmarks(): "letter-regmarks.png"|"a4-regmarks.png" }; setup(): { ... } }) {
-    throw new Error('Function not implemented.')
-  }
