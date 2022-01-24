@@ -1,9 +1,9 @@
 <script lang="ts">
 import html2pdf from 'html2pdf.js'
-import { getCurrentInstance, onMounted } from 'vue'
+import { defineComponent, getCurrentInstance, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 
-export default {
+export default defineComponent({
   computed: {
     isPageA4() {
       return this.$route.query.page == "A4"
@@ -59,7 +59,7 @@ export default {
 
     onMounted(downloadPDF)
   }
-}
+})
 
 </script>
 

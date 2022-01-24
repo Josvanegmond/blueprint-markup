@@ -7,9 +7,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
-    "@headlessui/vue": "^1.4.1",
     "@heroicons/vue": "^1.0.5",
-    "balm-ui": "^9.38.0",
     "html2pdf.js": "^0.9.3",
     "vue": "^3.2.16",
     "vue-router": "^4.0.12",
@@ -17,9 +15,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.9.3",
-    "autoprefixer": "^10.4.0",
-    "postcss": "^8.3.11",
     "tailwindcss": "^2.2.19",
-    "vite": "^2.6.4"
+    "vite": "^2.7.13"
   }
 }

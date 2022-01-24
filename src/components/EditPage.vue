@@ -1,10 +1,10 @@
 <script lang="ts">
 import { PrinterIcon, FolderOpenIcon } from '@heroicons/vue/solid'
 import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector'
-import { Ref, ref, watch } from 'vue'
+import { defineComponent, Ref, ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 
-export default {
+export default defineComponent({
   components: { 
     PrinterIcon, 
     FolderOpenIcon,
@@ -87,7 +87,7 @@ export default {
       router
     }
   }
-}
+})
 </script>
 
 <template>
@@ -302,3 +302,7 @@ export default {
 }
 
 </style>
+
+  function DefineComponent(arg0: { components: { PrinterIcon: import("vue").RenderFunction; FolderOpenIcon: import("vue").RenderFunction; FileSelector: any; Dropzone: any; DialogButton: any }; methods: { printTo(windowName: string, pageSize: string, fileName: string, imagesJSON: {}): void; print(fileName: string, images: {}[], printA4: boolean, printLetter: boolean, printPrintshop: boolean): void; getPageSize(): "page-letter"|"page-a4"; getPageRegmarks(): "letter-regmarks.png"|"a4-regmarks.png" }; setup(): { ... } }) {
+    throw new Error('Function not implemented.')
+  }
