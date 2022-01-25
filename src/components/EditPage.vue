@@ -2,7 +2,6 @@
 import { PrinterIcon, FolderOpenIcon } from '@heroicons/vue/solid'
 import { FileSelector, Dropzone, DialogButton } from 'vue3-file-selector'
 import { defineComponent, Ref, ref, watch } from 'vue'
-import { useRouter } from 'vue-router'
 
 export default defineComponent({
   components: { 
@@ -14,6 +13,13 @@ export default defineComponent({
   },
 
   methods: {
+    /**
+     * Prints the blueprints to new PrintPage windows for each selected setting
+     * @param windowName name of the page setting
+     * @param pageSize page size (A4, Letter)
+     * @param fileName name of the blueprint
+     * @param imagesJSON image data
+     */
     printTo(windowName: string, pageSize: string, fileName: string, imagesJSON: {}) {
       const routeData = this.router.resolve({
         path: '/print',
@@ -28,6 +34,14 @@ export default defineComponent({
       window.open(routeData.href, windowName)
     },
 
+    /**
+     * Prints all given images to pdfs, depending on the settings (A4, Letter, Printshop)
+     * @param fileName name of the blueprint
+     * @param images image data
+     * @param printA4 prints to A4 PDF
+     * @param printLetter prints to Letter PDF
+     * @param printPrintshop prints to A4 for Printshop
+     */
     print(fileName: string, images: {}[], printA4: boolean, printLetter: boolean, printPrintshop: boolean) {
       const imagesJSON = JSON.stringify(images)
       if(printA4) {
@@ -41,17 +55,30 @@ export default defineComponent({
       }
     },
 
+    /**
+     * Returns the page size as page-letter or page-a4 for current page setting, for css purposes
+     */
     getPageSize() {
       const pageSize = this.pageSize == 'Letter' ? 'page-letter' : 'page-a4'
       return pageSize
     },
 
+    /**
+     * Returns the regmark file path for current page setting (Letter or A4)
+     */
     getPageRegmarks() {
       const pageSize = this.pageSize == 'Letter' ? 'letter-regmarks.png' : 'a4-regmarks.png'
       return pageSize
     },
 
-    changePageNumber(images, image, oldNumber, newNumber) {
+    /**
+     * Changes the order of an image in the image array
+     * @param images image array to rearrange
+     * @param oldNumber old index number
+     * @param newNumber new index number 
+     */
+    changePageNumber(images, oldNumber, newNumber) {
+      let image = images[oldNumber]
       images.splice(oldNumber, 1)
       images.splice(newNumber, 0, image)
 
@@ -70,16 +97,20 @@ export default defineComponent({
     const printLetter = ref(true)
     const printPrintshop = ref(true)
 
-    watch(imgUrls, (imgUrls, imgUrlsOld) => {
-      images.value = imgUrls.map((imgUrl, i) => { return {url:imgUrl, align:'start', regmarks:true, printA4:true, printLetter:true, printPrintshop:true, pageNumber: i} })
-    })
-
+    //watches any changes in the previews array, which is filled by the user selecting images to load
+    //on a change, the imgUrls array is filled with urls to the loaded images
     watch(previews, (previews, previewsOld) => {
       imgUrls.value = []
       previews.forEach((file: File) => {
         imgUrls.value.push(URL.createObjectURL(file))
       })
     }, { flush: 'post' })
+
+    //watches any changes in the imgUrls array
+    //on a change, the images array is filled with image data
+    watch(imgUrls, (imgUrls) => {
+      images.value = imgUrls.map((imgUrl, i) => { return {url:imgUrl, align:'start', regmarks:true, printA4:true, printLetter:true, printPrintshop:true, pageNumber: i} })
+    })
 
     return {
       previews,
@@ -175,7 +206,7 @@ export default defineComponent({
             </div>
               
             <div class="page-options-row">
-                <input type="input" size="2" :id="'pageNumber'+i" v-on:input="changePageNumber(images, file, i, file.pageNumber)" v-model="file.pageNumber" checked>
+                <input type="input" size="2" :id="'pageNumber'+i" v-on:input="changePageNumber(images, i, file.pageNumber)" v-model="file.pageNumber" checked>
                 <label :for="'pageNumber'+i">Page number</label>
             </div>
 
