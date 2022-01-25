@@ -14,8 +14,11 @@
     "vue3-file-selector": "^1.0.1"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
-    "tailwindcss": "^2.2.19",
-    "vite": "^2.7.13"
+    "@vue/compiler-sfc": "^3.2.29",
+    "eslint": "^8.7.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-vue": "^8.3.0",
+    "prettier": "^2.5.1",
+    "tailwindcss": "^2.2.19"
   }
 }
