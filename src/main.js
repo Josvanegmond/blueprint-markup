@@ -1,9 +1,8 @@
-import { createApp, h, ref } from 'vue'
+import { createApp } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 import EditPage from './components/EditPage.vue'
 import PrintPage from './components/PrintPage.vue'
-import "@/assets/styles/main.css";
 import "@/assets/styles/main.css";
 
 const routes = [
