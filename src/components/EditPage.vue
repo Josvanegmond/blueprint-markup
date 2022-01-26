@@ -128,7 +128,7 @@ export default defineComponent({
   <div class="container">
     <nav class="fixed menu z-50">
       <a @click="print(fileName, images, printA4, printLetter, printPrintshop)" class="button">
-        <button class="bg-purple hover:bg-purple-light text-white font-bold py-3 px-3 rounded printer">
+        <button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-3 rounded printer">
           <PrinterIcon class="h-5 w-5"/>
         </button>
       </a>
@@ -167,7 +167,7 @@ export default defineComponent({
         <dropzone v-slot="{ hovered }">
           <div class="pagedropzone block w-full h-48 rounded-lg border-4 border-dashed border-gray transition-colors duration-150 flex flex-col space-y-4 justify-center items-center"
             :class="{ 'border-blue': hovered }">
-            <dialog-button class="bg-purple hover:bg-purple-light text-white font-bold py-3 px-3 rounded printer">
+            <dialog-button class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-3 px-3 rounded printer">
               <FolderOpenIcon class="h-5 w-5"/>
             </dialog-button>
           </div>
