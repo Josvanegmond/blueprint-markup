@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@heroicons/vue": "^1.0.5",
+    "autoprefixer": "^9",
     "core-js": "^3.6.5",
     "html2pdf.js": "^0.9.3",
     "vue": "^3.0.0",

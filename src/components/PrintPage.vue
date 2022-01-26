@@ -30,8 +30,6 @@ export default defineComponent({
         (printSetting == "A4" && image.printA4) ||
         (printSetting == "Letter" && image.printA4) ||
         (printSetting == "Printshop" && image.printPrintshop)
-      console.log(printSetting + " for " + image.printPrintshop + " is " + canPrint)
-        
       return canPrint
     }
   },
