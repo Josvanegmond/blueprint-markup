@@ -1,10 +1,11 @@
-import { createApp, h, ref } from 'vue'
+import { createApp, h } from 'vue'
 import { createRouter, createWebHistory } from 'vue-router'
+import App from './App.vue'
+
+import './index.css'
 
 import EditPage from './components/EditPage.vue'
 import PrintPage from './components/PrintPage.vue'
-import "@/assets/styles/main.css";
-import "@/assets/styles/main.css";
 
 const routes = [
     {
@@ -22,6 +23,8 @@ const router = createRouter({
     routes,
 })
 
-createApp({})
+createApp({
+    render: ()=>h(App)
+})
     .use(router)
     .mount('#app')
