@@ -241,7 +241,7 @@ export default defineComponent({
 }
 
 .previewblock {
-  width: 50vw;
+  width: calc(8.5in / 2);
   background-color: white;
   display:block;
   float:left;
@@ -274,16 +274,16 @@ export default defineComponent({
 }
 
 .page-a4 {
-  width: 210mm;
-  height: 297mm;
+  width: calc(210mm * 0.5);
+  height: calc(297mm * 0.5);
   background-color: gray;
   margin: auto auto 2vw auto;
   box-shadow: 3px 3px 4px 4px lightgray;
 }
 
 .page-letter {
-  width: 8.5in;
-  height: 11in;
+  width: calc(8.5in * 0.5);
+  height: calc(11in * 0.5);
   background-color: gray;
   margin: auto auto 2vw auto;
   box-shadow: 3px 3px 4px 4px lightgray;
@@ -309,8 +309,8 @@ export default defineComponent({
 
 
 .pageimg {
-  width: 210mm;
-  height: 279.4mm;
+  width: calc(210mm * 0.5);
+  height: calc(279.4mm * 0.5);
 }
 
 .overlayimg {
