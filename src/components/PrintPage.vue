@@ -123,8 +123,8 @@ export default defineComponent({
 
 .overlayimg {
   position: absolute;
-  width: inherit;
-  height: inherit;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 

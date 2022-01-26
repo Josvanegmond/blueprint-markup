@@ -21,7 +21,8 @@ export default defineComponent({
      * @param imagesJSON image data
      */
     printTo(windowName: string, pageSize: string, fileName: string, imagesJSON: {}) {
-      const routeData = this.router.resolve({
+      console.log('test')
+      const routeData = this.$router.resolve({
         path: '/print',
         query: {
           filename: fileName + '-' + windowName,
@@ -30,7 +31,7 @@ export default defineComponent({
           printSetting: windowName
         }
       })
-
+      console.log('test2')
       window.open(routeData.href, windowName)
     },
 
@@ -166,7 +167,7 @@ export default defineComponent({
 
       <file-selector v-model="previews" :accept="['image/png', 'image/jpeg']">
         <dropzone v-slot="{ hovered }">
-          <div class="pagedropzone block w-full h-64 rounded-lg border-4 border-dashed border-gray-400 transition-colors duration-150 flex flex-col space-y-4 justify-center items-center"
+          <div class="pagedropzone block w-full h-48 rounded-lg border-4 border-dashed border-gray-400 transition-colors duration-150 flex flex-col space-y-4 justify-center items-center"
             :class="{ 'border-blue-200': hovered }">
             <dialog-button class="bg-purple-800 hover:bg-purple-700 text-white font-bold py-3 px-3 rounded printer">
               <FolderOpenIcon class="h-5 w-5"/>
@@ -237,7 +238,7 @@ export default defineComponent({
   height: 100%;
   margin-left:10px;
   background-color: white;
-  padding-top:64px;
+  padding-top:80px;
 }
 
 .menu {
@@ -270,7 +271,7 @@ export default defineComponent({
 
 .pagedropzone {
   width: 70vw;
-  margin: auto auto 2vw auto;
+  margin: auto auto 3vw auto;
 }
 
 .page {
@@ -323,6 +324,8 @@ export default defineComponent({
 
 .overlayimg {
   position: absolute;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 .button {
